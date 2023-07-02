@@ -1,0 +1,38 @@
+#ifndef REGISTRATIONFORM_H
+#define REGISTRATIONFORM_H
+
+#include <QWidget>
+#include "C:\CPLUS-UI-ChatCPPTest-main\sources\Database.h"
+
+
+namespace Ui {
+class RegistrationForm;
+}
+
+class RegistrationForm : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit RegistrationForm(QWidget *parent = nullptr);
+    ~RegistrationForm();
+       void setDatabase( std::shared_ptr<Database> dbptr);
+          std::shared_ptr<Database> m_dbptr;
+
+signals:
+    void loginRequested();
+    void accepted(QString login, QString password);
+    void rejected();
+
+
+private slots:
+    void on_loginbutton_clicked();
+    void on_buttonBox_accepted();
+    void on_buttonBox_rejected();
+
+private:
+    Ui::RegistrationForm *ui;
+
+};
+
+#endif // REGISTRATIONFORM_H
